@@ -29,7 +29,7 @@ export default {};
   padding: 10px 20px;
   border-radius: 5px;
   min-height: 40px;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1;
   width: 550px;
   color: #545658;
