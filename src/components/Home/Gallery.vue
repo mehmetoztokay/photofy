@@ -1,20 +1,21 @@
 <template>
   <div class="container">
     <div class="gallery">
-      <div v-for="i in 20" :key="i" class="item">
-        <img src="@/assets/home-banner.jpg" alt="photofy" />
+      <div v-for="item in photos" :key="item.id" class="item">
+        <img :src="item.url" alt="photofy" />
         <div class="footer">
           <div class="author-info">
-            <span>Mehmet Öztokay</span>
-            <span>nature, moon</span>
+            <span>#{{ item.code }}-Resim</span>
+            <span>{{ item.author }} | {{ item.category }}</span>
           </div>
           <div class="action">
             <span class="download"
               ><img src="@/assets/icon-download.svg" alt=""
             /></span>
-            <span class="like"
-              ><img src="@/assets/icon-like.svg" alt=""
-            /></span>
+            <span @click="likeAction(item)" class="like">
+              <img v-if="item.liked" src="@/assets/icon-like.svg" alt="" />
+              <img v-else src="@/assets/icon-liked.svg" alt="" />
+            </span>
           </div>
         </div>
       </div>
@@ -23,7 +24,71 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      photos: [
+        {
+          id: 1,
+          author: "Mehmet Oztokay",
+          code: 1234,
+          url: "https://images.pexels.com/photos/9880104/pexels-photo-9880104.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+          category: "moon",
+          liked: true,
+        },
+        {
+          id: 2,
+          author: "Mehmet Oztokay",
+          code: 1214,
+          url: "https://images.pexels.com/photos/9880104/pexels-photo-9880104.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+          category: "sun",
+          liked: false,
+        },
+        {
+          id: 3,
+          author: "Mehmet Oztokay",
+          code: 1784,
+          url: "https://images.pexels.com/photos/9880104/pexels-photo-9880104.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+          category: "phone",
+          liked: false,
+        },
+        {
+          id: 4,
+          author: "Mehmet Oztokay",
+          code: 7856,
+          url: "https://images.pexels.com/photos/9880104/pexels-photo-9880104.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+          category: "book",
+          liked: true,
+        },
+        {
+          id: 5,
+          author: "Mehmet Oztokay",
+          code: 8654,
+          url: "https://images.pexels.com/photos/9880104/pexels-photo-9880104.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+          category: "auth",
+          liked: false,
+        },
+        {
+          id: 6,
+          author: "Mehmet Oztokay",
+          code: 2365,
+          url: "https://images.pexels.com/photos/9880104/pexels-photo-9880104.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+          category: "sound",
+          liked: true,
+        },
+      ],
+    };
+  },
+  methods: {
+    likeAction(item) {
+      if (item.liked) {
+        item.liked = false;
+      } else {
+        item.liked = true;
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -96,6 +161,7 @@ export default {};
   padding: 5px;
   display: block;
   margin-left: 13px;
+  cursor: pointer;
 }
 
 .gallery .item .footer .action .download img,
@@ -106,13 +172,13 @@ export default {};
 }
 
 @media screen and (max-width: 1280px) {
-    .gallery{
-        columns: 2;
-        column-gap: 10px;
-    }
+  .gallery {
+    columns: 2;
+    column-gap: 10px;
+  }
 
-    .gallery .item{
-        margin-bottom: 10px;
-    }
+  .gallery .item {
+    margin-bottom: 10px;
+  }
 }
 </style>
