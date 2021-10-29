@@ -1,23 +1,23 @@
 <template>
   <div class="home-banner">
-    <InputBar/>
+    <InputBar />
   </div>
 </template>
 
 <script>
-import InputBar from "@/components/Home/InputBar"
+import InputBar from "@/components/Home/InputBar";
 export default {
-  components:{
+  components: {
     InputBar,
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
-.home-banner{
+.home-banner {
   width: 100%;
   min-height: 60vh;
-  background-image: url('~@/assets/home-banner.jpg');
+  background-image: url("https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -27,5 +27,4 @@ export default {
   justify-content: center;
   padding: 8rem 0;
 }
-
 </style>
