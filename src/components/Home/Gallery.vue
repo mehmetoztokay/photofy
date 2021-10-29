@@ -9,9 +9,9 @@
             <span>{{ item.author }} | {{ item.category }}</span>
           </div>
           <div class="action">
-            <span class="download"
+            <a download :href="item.url"  target="_blank" class="download"
               ><img src="@/assets/icon-download.svg" alt=""
-            /></span>
+            /></a>
             <span @click="likeAction(item)" class="like">
               <img v-if="item.liked" src="@/assets/icon-like.svg" alt="" />
               <img v-else src="@/assets/icon-liked.svg" alt="" />
@@ -87,6 +87,9 @@ export default {
         item.liked = true;
       }
     },
+    downImg(item){
+        console.log(`object`, item)
+    }
   },
 };
 </script>
@@ -142,11 +145,11 @@ export default {
   color: #fff;
 }
 
-.gallery .item .footer .author-info span:first-child {
+.gallery .item .footer .author-info .download {
   font-weight: 500;
   font-size: 16px;
 }
-.gallery .item .footer .author-info span:nth-child(2) {
+.gallery .item .footer .author-info .like{
   font-weight: 200;
   font-size: 14px;
 }
@@ -179,6 +182,13 @@ export default {
 
   .gallery .item {
     margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .gallery {
+    columns: 1;
+    column-gap: 10px;
   }
 }
 </style>

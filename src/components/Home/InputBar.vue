@@ -20,6 +20,7 @@ export default {};
 <style scoped>
 .input-area .input {
   position: relative;
+  width: 550px;
 }
 .input-area .input input {
   background-color: #fff;
@@ -31,7 +32,7 @@ export default {};
   min-height: 40px;
   font-size: 16px;
   line-height: 1;
-  width: 550px;
+  width: 100%;
   color: #545658;
 }
 .input-area .input .search {
@@ -69,5 +70,11 @@ export default {};
 
 .input-area .sugges span:hover:not(.input-area .sugges span:first-child) {
   text-decoration: underline;
+}
+
+@media screen and (max-width: 640px) {
+  .input-area .input{
+    width: 300px;
+  }
 }
 </style>

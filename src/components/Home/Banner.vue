@@ -16,7 +16,7 @@ export default {
 <style scoped>
 .home-banner{
   width: 100%;
-  height: 50rem;
+  min-height: 60vh;
   background-image: url('~@/assets/home-banner.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -25,6 +25,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 8rem 0;
 }
 
 </style>
