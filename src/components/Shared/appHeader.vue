@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar container">
     <router-link class="logo" to="/"><img src="@/assets/logo-photofy.svg" alt="photofy" /></router-link>
-    <div class="nav-right">
+    <div class="nav-right" v-if="0>1">
       <router-link to="/profile" class="profile"><img src="@/assets/icon-user.svg" alt=""></router-link>
     </div>
    </nav>

@@ -1,20 +1,23 @@
 <template>
   <div class="container">
     <div class="gallery">
-      <div class="item">
+      <div v-for="i in 20" :key="i" class="item">
         <img src="@/assets/home-banner.jpg" alt="photofy" />
         <div class="footer">
-            <div class="author-info">
-                <span>Mehmet Öztokay</span>
-                <span>nature, moon</span>
-            </div>
-            <div class="action">
-                <span class="download"><img src="@/assets/icon-download.svg" alt=""></span>
-                <span class="like"><img src="@/assets/icon-like.svg" alt=""></span>
-            </div>
+          <div class="author-info">
+            <span>Mehmet Öztokay</span>
+            <span>nature, moon</span>
+          </div>
+          <div class="action">
+            <span class="download"
+              ><img src="@/assets/icon-download.svg" alt=""
+            /></span>
+            <span class="like"
+              ><img src="@/assets/icon-like.svg" alt=""
+            /></span>
+          </div>
         </div>
       </div>
-      
     </div>
   </div>
 </template>
@@ -25,18 +28,14 @@ export default {};
 
 <style scoped>
 .gallery {
-  /* display: flex; */
   width: 100%;
   overflow: hidden;
-  /* flex-wrap: wrap;
-  justify-content: space-between; */
   margin-top: 4rem;
   columns: 3;
   column-gap: 20px;
 }
 
 .gallery .item {
-  /* width: 24%; */
   height: auto;
   margin-bottom: 1.5rem;
   break-inside: avoid;
@@ -51,18 +50,14 @@ export default {};
   display: block;
 }
 
-.gallery .item:hover .footer{
-    visibility: visible;
-    opacity: 1;
+.gallery .item:hover .footer {
+  visibility: visible;
+  opacity: 1;
 }
 
 .gallery .item .footer {
   background: rgb(0, 0, 0);
-  background: linear-gradient(
-    0deg,
-    rgb(0 0 0) 0%,
-    rgb(0 0 0 / 0%) 100%
-  );
+  background: linear-gradient(0deg, rgb(0 0 0) 0%, rgb(0 0 0 / 0%) 100%);
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -70,43 +65,54 @@ export default {};
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
-  transition: visibility 0s, opacity 0.5s linear;
+  transition: opacity 0.5s linear;
   visibility: hidden;
   opacity: 0;
   align-items: center;
 }
 
-.gallery .item .footer .author-info{
-    display: flex;
-    flex-direction: column;
-    color: #fff;
+.gallery .item .footer .author-info {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
 }
 
-.gallery .item .footer .author-info span:first-child{
-    font-weight: 500;
-    font-size: 16px;
+.gallery .item .footer .author-info span:first-child {
+  font-weight: 500;
+  font-size: 16px;
 }
-.gallery .item .footer .author-info span:nth-child(2){
-    font-weight: 200;
-    font-size: 14px;
-}
-
-.gallery .item .footer .action{
-    display: flex;
-    align-items: center;
+.gallery .item .footer .author-info span:nth-child(2) {
+  font-weight: 200;
+  font-size: 14px;
 }
 
-.gallery .item .footer .action .download, .gallery .item .footer .action .like{
-    padding: 5px;
-    display: block;
-    margin-left: 13px;
+.gallery .item .footer .action {
+  display: flex;
+  align-items: center;
 }
 
-.gallery .item .footer .action .download img, .gallery .item .footer .action .like img{
-
-    min-height: unset;
-    height: 20px;
-    width: auto;
+.gallery .item .footer .action .download,
+.gallery .item .footer .action .like {
+  padding: 5px;
+  display: block;
+  margin-left: 13px;
 }
 
+.gallery .item .footer .action .download img,
+.gallery .item .footer .action .like img {
+  min-height: unset;
+  height: 20px;
+  width: auto;
+}
+
+@media screen and (max-width: 1280px) {
+    .gallery{
+        columns: 2;
+        column-gap: 10px;
+    }
+
+    .gallery .item{
+        margin-bottom: 10px;
+    }
+}
 </style>
