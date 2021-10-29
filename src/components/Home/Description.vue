@@ -1,27 +1,43 @@
 <template>
   <div class="desc container">
     <h2>Bu hafta</h2>
-    <p>Haftanın enlerini bu bölümde inceleyebilirsiniz. Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir.</p>
+    <p>
+      Haftanın enlerini bu bölümde inceleyebilirsiniz. Lorem Ipsum, dizgi ve
+      baskı endüstrisinde kullanılan mıgır metinlerdir.
+    </p>
   </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style scoped>
-.desc{
-  margin-top: 6rem;  
+.desc {
+  margin-top: 6rem;
 }
-.desc h2{
-  font-size:3rem;
+.desc h2 {
+  font-size: 3rem;
 }
 
-.desc p{
+.desc p {
   font-size: 1.3rem;
   margin-top: 1rem;
   max-width: 800px;
+}
+
+@media screen and (max-width: 640px) {
+  .desc {
+    margin-top: 3rem;
+  }
+  .desc h2 {
+    font-size: 2rem;
+  }
+
+  .desc p {
+    font-size: 1rem;
+    margin-top: 1rem;
+    max-width: 800px;
+  }
 }
 </style>
