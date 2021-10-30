@@ -1,7 +1,7 @@
 <template>
   <div class="input-area">
     <div class="input">
-      <input type="text" placeholder="moonlight..." />
+      <input v-model="searchData" type="text" placeholder="moonlight..." />
       <span class="search"></span>
     </div>
     <div class="sugges">
@@ -14,7 +14,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      searchData: "",
+    };
+  },
+  created() {},
+};
 </script>
 
 <style scoped>
@@ -46,7 +53,6 @@ export default {};
   position: absolute;
   z-index: 1;
   top: 50%;
-  cursor: pointer;
   transform: translateY(-50%);
   right: 20px;
 }

@@ -59,7 +59,7 @@ export default {
     getPosts() {
       axios
         .get(
-          "https://api.unsplash.com/photos/?count=30&?count=30&client_id=ybvQYUkE1OrPsSILaOI4eZhcEgNy8I11jK_8kaN_qZ0"
+          "https://api.unsplash.com/photos/random/?count=30&?count=30&client_id=ybvQYUkE1OrPsSILaOI4eZhcEgNy8I11jK_8kaN_qZ0"
         )
         .then((response) => {
           this.photos = response.data;
