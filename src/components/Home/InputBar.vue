@@ -73,7 +73,7 @@ export default {};
 }
 
 @media screen and (max-width: 640px) {
-  .input-area .input{
+  .input-area .input {
     width: 300px;
   }
 }

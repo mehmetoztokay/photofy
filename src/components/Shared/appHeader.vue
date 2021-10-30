@@ -1,10 +1,14 @@
 <template>
   <nav class="navbar container">
-    <router-link class="logo" to="/"><img src="@/assets/logo-photofy.svg" alt="photofy" /></router-link>
-    <div class="nav-right" v-if="0>1">
-      <router-link to="/profile" class="profile"><img src="@/assets/icon-user.svg" alt=""></router-link>
+    <router-link class="logo" to="/"
+      ><img src="@/assets/logo-photofy.svg" alt="photofy"
+    /></router-link>
+    <div class="nav-right" v-if="0 > 1">
+      <router-link to="/profile" class="profile"
+        ><img src="@/assets/icon-user.svg" alt=""
+      /></router-link>
     </div>
-   </nav>
+  </nav>
 </template>
 
 <script>
@@ -12,7 +16,7 @@ export default {};
 </script>
 
 <style scoped>
-.navbar{
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,6 +26,6 @@ export default {};
   left: 50%;
   transform: translateX(-50%);
   top: 50px;
+  z-index: 1;
 }
 </style>
-
