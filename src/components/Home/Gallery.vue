@@ -6,7 +6,7 @@
         <div class="footer">
           <div class="author-info">
             <span>#{{ codes[index] }}-Resim</span>
-            <span>{{ item.user.name }} | {{ item.created_at }}</span>
+            <span>{{ item.user.name }} | {{ cocktail[index].strDrink }}</span>
           </div>
           <div class="action">
             <a
@@ -35,6 +35,7 @@ export default {
     return {
       photos: [],
       codes: [],
+      cocktail: [],
     };
   },
   methods: {
@@ -52,27 +53,52 @@ export default {
       }
     },
 
-    downImg(item) {
-      console.log(`object`, item);
-    },
+    // downImg(item) {
+    //   console.log(`object`, item);
+    // },
 
     getPosts() {
       axios
         .get(
-          "https://api.unsplash.com/photos/random/?count=30&?count=30&client_id=ybvQYUkE1OrPsSILaOI4eZhcEgNy8I11jK_8kaN_qZ0"
+          "https://api.unsplash.com/photos/random/?count=30&?count=30&client_id=84rZrSB7nj6P7THhL9ggr4C09ssevCjJy2sR3WyXw0A"
         )
         .then((response) => {
-          this.photos = response.data;
+          this.photos = response.data || [];
           this.getRandom();
         })
         .catch((error) => {
           this.errors.push(error);
         });
     },
+
+    getData() {
+      console.log(this.photos.length);
+
+      const options = {
+        method: "GET",
+        url: "https://the-cocktail-db.p.rapidapi.com/filter.php",
+        params: { i: "Gin" },
+        headers: {
+          "x-rapidapi-host": "the-cocktail-db.p.rapidapi.com",
+          "x-rapidapi-key":
+            "991e0480b0mshcfc381bad7e386ap176dadjsn616a61186802",
+        },
+      };
+
+      axios
+        .request(options)
+        .then((response) => {
+          this.cocktail = response.data.drinks.splice(1, 30) || [];
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    },
   },
 
   created() {
     this.getPosts();
+    this.getData();
   },
 };
 </script>
