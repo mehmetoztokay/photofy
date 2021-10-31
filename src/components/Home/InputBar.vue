@@ -1,15 +1,20 @@
 <template>
   <div class="input-area">
     <div class="input">
-      <input v-model="searchData" type="text" placeholder="moonlight..." />
-      <span class="search"></span>
+      <input
+        v-model="searchData"
+        @keydown.enter="getSearchData"
+        type="text"
+        placeholder="Kodu yazın, enter'a basın. Ardından filtrele butonuna tıklayın."
+      />
+      <span class="search" @click="getSearchData"></span>
     </div>
-    <div class="sugges">
+    <!-- <div class="sugges">
       <span>öneriler: </span>
       <span>moon</span>
       <span>moon</span>
       <span>moon</span>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -17,10 +22,14 @@
 export default {
   data() {
     return {
-      searchData: "",
+      searchData: null,
     };
   },
-  created() {},
+  methods: {
+    getSearchData() {
+      this.$emit("searchData", this.searchData);
+    },
+  },
 };
 </script>
 

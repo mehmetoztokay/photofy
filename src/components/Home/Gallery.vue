@@ -1,11 +1,12 @@
 <template>
   <div class="container">
+    <a @click="getFilterGallery" class="filter-button">Filtrele</a>
     <div class="gallery">
       <div v-for="(item, index) in photos" :key="item.id" class="item">
         <img :src="item.links.download" alt="photofy" />
         <div class="footer">
           <div class="author-info">
-            <span>#{{ codes[index] }}-Resim</span>
+            <span>#{{ item.codes }}-Resim</span>
             <span>{{ item.user.name }} | {{ cocktail[index].strDrink }}</span>
           </div>
           <div class="action">
@@ -34,10 +35,11 @@ export default {
   data() {
     return {
       photos: [],
-      codes: [],
+      // codes: [],
       cocktail: [],
     };
   },
+  props: ["searchDataCome"],
   methods: {
     likeAction(item) {
       if (item.liked) {
@@ -49,18 +51,17 @@ export default {
 
     getRandom() {
       for (var i = 0; i < this.photos.length; i++) {
-        this.codes.push(Math.floor(Math.random() * (9999 - 999)) + 1000);
+        // this.codes.push(Math.floor(Math.random() * (9999 - 999)) + 1000);
+        let randomN = Math.floor(Math.random() * (9999 - 999)) + 1000;
+        this.photos[i].codes = randomN;
       }
     },
-
-    // downImg(item) {
-    //   console.log(`object`, item);
-    // },
 
     getPosts() {
       axios
         .get(
-          "https://api.unsplash.com/photos/random/?count=30&?count=30&client_id=84rZrSB7nj6P7THhL9ggr4C09ssevCjJy2sR3WyXw0A"
+          // "https://api.unsplash.com/photos/random/?count=30&?count=30&client_id=84rZrSB7nj6P7THhL9ggr4C09ssevCjJy2sR3WyXw0A"
+          "https://api.unsplash.com/photos/random/?count=30&?count=30&client_id=ybvQYUkE1OrPsSILaOI4eZhcEgNy8I11jK_8kaN_qZ0" //yedek
         )
         .then((response) => {
           this.photos = response.data || [];
@@ -94,6 +95,11 @@ export default {
           console.error(error);
         });
     },
+    getFilterGallery() {
+      console.log(`object`, this.photos);
+      this.photos = this.photos.filter((p) => p.codes == this.searchDataCome);
+      console.log(`object`, this.photos);
+    },
   },
 
   created() {
@@ -104,6 +110,18 @@ export default {
 </script>
 
 <style scoped>
+.container .filter-button {
+  border: 2px solid #000000;
+  display: inline-block;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.container .filter-button:hover {
+  background-color: #000000;
+  color: #fff;
+}
 .gallery {
   width: 100%;
   overflow: hidden;

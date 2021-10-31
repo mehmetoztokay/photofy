@@ -1,6 +1,6 @@
 <template>
   <div class="home-banner">
-    <InputBar />
+    <InputBar @searchData="searchData($event)" />
   </div>
 </template>
 
@@ -9,6 +9,11 @@ import InputBar from "@/components/Home/InputBar";
 export default {
   components: {
     InputBar,
+  },
+  methods: {
+    searchData($event) {
+      this.$emit("searchData", $event);
+    },
   },
 };
 </script>
