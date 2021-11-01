@@ -22,7 +22,8 @@ export default {
 .home-banner {
   width: 100%;
   min-height: 60vh;
-  background-image: url("https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  /* background-image: url("https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"); */
+  background-image: url("~@/assets/home-banner.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -33,7 +34,7 @@ export default {
   padding: 8rem 0;
   position: relative;
 }
-.home-banner::after {
+/* .home-banner::after {
   content: "";
   position: absolute;
   left: 0;
@@ -42,5 +43,5 @@ export default {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: -1;
-}
+} */
 </style>
