@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <a @click="getFilterGallery" class="filter-button">Filtrele</a>
+    <!-- <a @click="getFilterGallery" class="filter-button">Filtrele</a> -->
     <div class="gallery">
       <div v-for="(item, index) in photos" :key="item.id" class="item">
         <img :src="item.links.download" alt="photofy" />
@@ -18,7 +18,7 @@
               class="download"
               ><img src="@/assets/icon-download.svg" alt=""
             /></a>
-            <span @click="likeAction(item)" class="like">
+            <span v-if="0 > 1" @click="likeAction(item)" class="like">
               <img v-if="item.liked" src="@/assets/icon-like.svg" alt="" />
               <img v-else src="@/assets/icon-liked.svg" alt="" />
             </span>
@@ -30,82 +30,8 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
-  data() {
-    return {
-      photos: [],
-      // codes: [],
-      cocktail: [],
-    };
-  },
-  props: ["searchDataCome"],
-  methods: {
-    likeAction(item) {
-      if (item.liked) {
-        item.liked = false;
-      } else {
-        item.liked = true;
-      }
-    },
-
-    getRandom() {
-      for (var i = 0; i < this.photos.length; i++) {
-        // this.codes.push(Math.floor(Math.random() * (9999 - 999)) + 1000);
-        let randomN = Math.floor(Math.random() * (9999 - 999)) + 1000;
-        this.photos[i].codes = randomN;
-      }
-    },
-
-    getPosts() {
-      axios
-        .get(
-          // "https://api.unsplash.com/photos/random/?count=30&?count=30&client_id=84rZrSB7nj6P7THhL9ggr4C09ssevCjJy2sR3WyXw0A"
-          "https://api.unsplash.com/photos/random/?count=30&?count=30&client_id=ybvQYUkE1OrPsSILaOI4eZhcEgNy8I11jK_8kaN_qZ0" //yedek
-        )
-        .then((response) => {
-          this.photos = response.data || [];
-          this.getRandom();
-        })
-        .catch((error) => {
-          this.errors.push(error);
-        });
-    },
-
-    getData() {
-      console.log(this.photos.length);
-
-      const options = {
-        method: "GET",
-        url: "https://the-cocktail-db.p.rapidapi.com/filter.php",
-        params: { i: "Gin" },
-        headers: {
-          "x-rapidapi-host": "the-cocktail-db.p.rapidapi.com",
-          "x-rapidapi-key":
-            "991e0480b0mshcfc381bad7e386ap176dadjsn616a61186802",
-        },
-      };
-
-      axios
-        .request(options)
-        .then((response) => {
-          this.cocktail = response.data.drinks.splice(1, 30) || [];
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
-    },
-    getFilterGallery() {
-      console.log(`object`, this.photos);
-      this.photos = this.photos.filter((p) => p.codes == this.searchDataCome);
-      console.log(`object`, this.photos);
-    },
-  },
-
-  created() {
-    this.getPosts();
-    this.getData();
-  },
+  props: ["photos", "cocktail"],
 };
 </script>
 
