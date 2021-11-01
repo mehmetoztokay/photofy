@@ -3,6 +3,7 @@
   <homeBanner />
   <homeDesc />
   <homeGallery :filteredPhotos="filteredPhotos" :cocktail="cocktail" />
+  <appFooter />
 </template>
 
 <script>

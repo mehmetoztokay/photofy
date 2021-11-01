@@ -5,7 +5,7 @@
         v-model="searchData"
         @keydown.enter="searchDataAction"
         type="text"
-        placeholder="Resim kodunu yazın ve enter'a basın."
+        placeholder="Kodu yazın ve enter'a basın."
       />
       <span class="search" @click="searchDataAction"></span>
     </div>
