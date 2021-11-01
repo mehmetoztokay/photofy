@@ -3,11 +3,11 @@
     <div class="input">
       <input
         v-model="searchData"
-        @keydown.enter="getSearchData"
+        @keydown.enter="searchDataAction"
         type="text"
-        placeholder="Kodu yazın, enter'a basın. Ardından filtrele butonuna tıklayın."
+        placeholder="Resim kodunu yazın ve enter'a basın."
       />
-      <span class="search" @click="getSearchData"></span>
+      <span class="search" @click="searchDataAction"></span>
     </div>
     <!-- <div class="sugges">
       <span>öneriler: </span>
@@ -25,9 +25,10 @@ export default {
       searchData: null,
     };
   },
+  inject: ["getFilterGalleryData"],
   methods: {
-    getSearchData() {
-      this.$emit("searchData", this.searchData);
+    searchDataAction() {
+      this.getFilterGalleryData(this.searchData);
     },
   },
 };

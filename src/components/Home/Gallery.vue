@@ -2,7 +2,7 @@
   <div class="container">
     <!-- <a @click="getFilterGallery" class="filter-button">Filtrele</a> -->
     <div class="gallery">
-      <div v-for="(item, index) in photos" :key="item.id" class="item">
+      <div v-for="(item, index) in filteredPhotos" :key="item.id" class="item">
         <img :src="item.links.download" alt="photofy" />
         <div class="footer">
           <div class="author-info">
@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  props: ["photos", "cocktail"],
+  props: ["filteredPhotos", "cocktail"],
 };
 </script>
 

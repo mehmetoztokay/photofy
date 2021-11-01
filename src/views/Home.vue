@@ -2,7 +2,7 @@
   <appHeader />
   <homeBanner />
   <homeDesc />
-  <homeGallery :photos="photos" :cocktail="cocktail" />
+  <homeGallery :filteredPhotos="filteredPhotos" :cocktail="cocktail" />
 </template>
 
 <script>
@@ -21,6 +21,7 @@ export default {
     return {
       photos: [],
       cocktail: [],
+      filteredPhotos: [],
     };
   },
   methods: {
@@ -39,24 +40,23 @@ export default {
       }
     },
 
-    async getPosts() {
-      let res = await axios
+    getPosts() {
+      axios
         .get(
           "https://api.unsplash.com/photos/random/?count=30&?count=30&client_id=84rZrSB7nj6P7THhL9ggr4C09ssevCjJy2sR3WyXw0A"
           // "https://api.unsplash.com/photos/random/?count=30&?count=30&client_id=ybvQYUkE1OrPsSILaOI4eZhcEgNy8I11jK_8kaN_qZ0" //yedek
         )
         .then((response) => {
           this.photos = response.data || [];
+          this.filteredPhotos = this.photos;
           this.getRandom();
         })
         .catch((error) => {
           this.errors.push(error);
         });
-
-      console.log(`object`, res);
     },
 
-    async getData() {
+    getData() {
       const options = {
         method: "GET",
         url: "https://the-cocktail-db.p.rapidapi.com/filter.php",
@@ -68,7 +68,7 @@ export default {
         },
       };
 
-      let res = await axios
+      axios
         .request(options)
         .then((response) => {
           this.cocktail = response.data.drinks.splice(1, 30) || [];
@@ -76,22 +76,21 @@ export default {
         .catch(function (error) {
           console.error(error);
         });
-
-      console.log(`object`, res);
     },
     getFilterGallery(data) {
-      console.log(`object`, this.photos);
-      this.photos = this.photos.filter((p) => p.codes == data);
-      console.log(`object`, data);
+      if (data == "" || data == null) {
+        this.filteredPhotos = this.photos.filter((p) => p.codes != "");
+      } else {
+        this.filteredPhotos = this.photos.filter((p) => p.codes == data);
+      }
     },
   },
 
-  // provide() {
-  //   return {
-  //     photos: this.photos,
-  //     cocktail: this.cocktail,
-  //   };
-  // },
+  provide() {
+    return {
+      getFilterGalleryData: this.getFilterGallery,
+    };
+  },
 
   created() {
     this.getPosts();
