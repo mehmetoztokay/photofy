@@ -3,7 +3,7 @@
     <div class="logo">
       <img src="~@/assets/logo-photofy-dark.svg" alt="photofy" />
     </div>
-    <p class="slogan">sen de serüvene katıl!</p>
+    <p class="slogan">photofy'a giris yap!</p>
     <div class="form-area">
       <label for="">
         E Posta Adresiniz
@@ -13,8 +13,8 @@
         Şifreniz
         <input v-model="userData.password" type="password" />
       </label>
-      <p class="form-link">photofy hesabın zaten var mı, hemen <router-link :to="{ name: 'Login' }">giris yap!</router-link></p>
-      <a class="form-button transition" @click="saveUser">kayıt</a>
+      <p class="form-link">photofy hesabın yok mu, hemen <router-link :to="{ name: 'Register' }">kayit ol!</router-link></p>
+      <a class="form-button transition" @click="loginUser">giris</a>
     </div>
   </div>
 </template>
@@ -30,17 +30,16 @@ export default {
     };
   },
   methods: {
-    saveUser() {
-      this.$axios.get(`http://localhost:3000/users?email=${this.userData.email}`).then((response) => {
-        if (response?.data?.length > 0) {
-          alert("Bu maile ait hesap bulunmaktadir.");
-          this.$router.push({ name: "Login" });
-        } else {
-          this.$axios.post("http://localhost:3000/users", this.userData).then((response) => console.log(`response`, response));
-          this.$store.commit("setUser", this.userData);
+    loginUser() {
+      this.$axios.get(`http://localhost:3000/users?mail=${this.userData.email}&password=${this.userData.password}`).then((response) => {
+        if (response.data.length > 1) {
+          this.$store.commit("setUser", response.data[0]);
           this.$router.push({ name: "Home" });
+        } else {
+          alert("boyle bir kullanici yok! Kayit olabilirsin.");
         }
       });
+      this.$store.commit("setUser", this.userData);
     },
   },
 };

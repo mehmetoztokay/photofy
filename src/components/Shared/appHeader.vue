@@ -1,12 +1,8 @@
 <template>
   <nav class="navbar container">
-    <router-link class="logo" to="/"
-      ><img src="@/assets/logo-photofy.svg" alt="photofy"
-    /></router-link>
-    <div class="nav-right" v-if="0 > 1">
-      <router-link to="/profile" class="profile"
-        ><img src="@/assets/icon-user.svg" alt=""
-      /></router-link>
+    <router-link class="logo" to="/"><img src="@/assets/logo-photofy.svg" alt="photofy" /></router-link>
+    <div class="nav-right">
+      <router-link :to="{ name: 'Home' }" class="profile"><img src="@/assets/icon-user.svg" alt="profile" /></router-link>
     </div>
   </nav>
 </template>
